@@ -13,7 +13,9 @@ int lab3_1Menu(int, int, int);
 int lab3_2Menu(int, int, int);
 int lab3_3Menu(int, int, float);
 int lab4_1Menu(int, int, int, int *);
-int lab5_1Menu(int, int, int, int **, int **);
+int lab5_1Menu(int, int, int, int *, int *, int);
+
+int *newMatrix(int, int);
 
 int mainMenu(int cols, int rows)
 {
@@ -69,22 +71,10 @@ int mainMenu(int cols, int rows)
   }
   case 9:
   {
-    int matA[32][32] = {{2, 4, 3}, {5, 4, 2}, {7, 2, 5}};
-    int matB[32][32] = {{6, 7, 5}, {9, 8, 2}, {3, 2, 4}};
-    int *matAAll[512];
-    int *matBAll[512];
-    for (int i = 0; i < 32; i++)
-    {
-      matAAll[i] = matA[i];
-      matBAll[i] = matB[i];
-      for (int j = 0; j < 32; j++)
-      {
-        matAAll[i][j] = matA[i][j];
-        matBAll[i][j] = matB[i][j];
-      }
-    }
-
-    lab5_1Menu(cols, rows, 3, matAAll, matBAll);
+    const int size = sizeof(int);
+    int *matA = newMatrix(32, size);
+    int *matB = newMatrix(32, size);
+    lab5_1Menu(cols, rows, 3, matA, matB, size);
     break;
   }
   default:

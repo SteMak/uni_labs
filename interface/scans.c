@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+void placeEl(int *mat, int i, int j, int el);
+
 int scanAswer()
 {
   int scanned = 0;
@@ -19,17 +21,24 @@ int *scanAswerArray(int a, int *scanned)
 {
   for (int i = 0; i < a; i++)
     scanf("%d", &scanned[i]);
-  char least[512] = "";
-  scanf("%[^\n]", least);
+  char c;
+  while ((c = getchar()) != '\n' && c != EOF)
+  {
+  }
   return scanned;
 }
 
-int **scanAswerMatrix(int a, int **scanned)
+void scanAswerMatrix(int a, int *scanned)
 {
+  int scan;
   for (int i = 0; i < a; i++)
     for (int j = 0; j < a; j++)
-      scanf("%d", &scanned[i][j]);
-  char least[512] = "";
-  scanf("%[^\n]", least);
-  return scanned;
+    {
+      scanf("%d", &scan);
+      placeEl(scanned, i, j, scan);
+    }
+  char c;
+  while ((c = getchar()) != '\n' && c != EOF)
+  {
+  }
 }

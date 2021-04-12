@@ -71,13 +71,13 @@ int lab4_1Menu(int cols, int rows, int a, int *arr)
     break;
   case 3:
   {
-    arr = randomizeArray(arr, a);
+    randomizeArray(arr, a);
     lab4_1Menu(cols, rows, a, arr);
     break;
   }
   case 4:
   {
-    arr = fibonaccinizeArray(arr, a);
+    fibonaccinizeArray(arr, a);
     lab4_1Menu(cols, rows, a, arr);
     break;
   }

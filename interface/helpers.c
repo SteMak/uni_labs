@@ -33,22 +33,23 @@ int sumArray(int *arr, int a)
 
 int maxArray(int *arr, int a)
 {
-  int max = 0;
-  for (int i = 0; i < a; i++)
+  if (a <= 0)
+    return -1;
+  int max = arr[0];
+  for (int i = 1; i < a; i++)
     if (max < arr[i])
       max = arr[i];
   return max;
 }
 
-int *randomizeArray(int *arr, int a)
+void randomizeArray(int *arr, int a)
 {
   srand(time(NULL));
   for (int i = 0; i < a; i++)
     arr[i] = rand() % 100;
-  return arr;
 }
 
-int *fibonaccinizeArray(int *arr, int a)
+void fibonaccinizeArray(int *arr, int a)
 {
   if (a >= 2)
   {
@@ -57,46 +58,73 @@ int *fibonaccinizeArray(int *arr, int a)
   }
   for (int i = 2; i < a; i++)
     arr[i] = arr[i - 1] + arr[i - 2];
-  return arr;
 }
 
-char *stringifyMatrix(int **mat, int a, char *matStr)
+int *newMatrix(int a, int size)
 {
-  for (int i = 0; i < a; i++)
-  {
-    char strEl[32] = "";
-    stringifyArray(mat[i], a, strEl);
-    strcat(matStr, "[ ");
-    strcat(matStr, strEl);
-    strcat(matStr, "] ");
-  }
-  return matStr;
-}
+  int *mat;
+  mat = malloc(a * a * (size + 1));
 
-int **matrixSum(int **matA, int **matB, int a, int **sum)
-{
   for (int i = 0; i < a; i++)
     for (int j = 0; j < a; j++)
-      sum[i][j] = matA[i][j] + matB[i][j];
+      *(mat + i * size + j) = i + j;
+  return mat;
+}
 
+int takeEl(int *mat, int i, int j)
+{
+  return *(mat + i * sizeof(*mat) + j);
+}
+void placeEl(int *mat, int i, int j, int el)
+{
+  *(mat + i * sizeof(*mat) + j) = el;
+}
+void incrEl(int *mat, int i, int j, int el)
+{
+  *(mat + i * sizeof(*mat) + j) += el;
+}
+
+void stringifyMatrix(int *mat, int a, char *matStr)
+{
+  char strEl[32] = "";
+  for (int i = 0; i < a; i++)
+  {
+    strcat(matStr, "[ ");
+    for (int j = 0; j < a; j++)
+    {
+      sprintf(strEl, "%d ", *(mat + i * sizeof(*mat) + j));
+      strcat(matStr, strEl);
+    }
+    strcat(matStr, "] ");
+  }
+}
+
+int *matrixSum(int *matA, int *matB, int a)
+{
+  int *sum = newMatrix(a, sizeof(*matA));
+  for (int i = 0; i < a; i++)
+    for (int j = 0; j < a; j++)
+      placeEl(sum, i, j, takeEl(matA, i, j) + takeEl(matB, i, j));
   return sum;
 }
 
-int **matrixMultiplication(int **matA, int **matB, int a, int **mult)
+int *matrixMultiplication(int *matA, int *matB, int a)
 {
-  for (int i = 0; i < a; ++i)
-    for (int j = 0; j < a; ++j)
-      for (int k = 0; k < a; ++k)
-        mult[i][j] += matA[i][k] * matB[k][j];
-
+  int *mult = newMatrix(a, sizeof(*matA));
+  for (int i = 0; i < a; i++)
+    for (int j = 0; j < a; j++)
+    {
+      placeEl(mult, i, j, 0);
+      for (int k = 0; k < a; k++)
+        incrEl(mult, i, j, takeEl(matA, i, k) * takeEl(matB, k, j));
+    }
   return mult;
 }
 
-int **randomizeMatrix(int **mat, int a)
+void randomizeMatrix(int *mat, int a)
 {
   srand(time(NULL));
   for (int i = 0; i < a; i++)
     for (int j = 0; j < a; j++)
-      mat[i][j] = rand() % 100;
-  return mat;
+      placeEl(mat, i, j, rand() % 100);
 }
