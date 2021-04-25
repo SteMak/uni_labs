@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void placeEl(int *mat, int i, int j, int el);
+void placeEl(int *, int, int, int, int);
 
 int scanAswer()
 {
@@ -35,10 +35,15 @@ void scanAswerMatrix(int a, int *scanned)
     for (int j = 0; j < a; j++)
     {
       scanf("%d", &scan);
-      placeEl(scanned, i, j, scan);
+      placeEl(scanned, a, i, j, scan);
     }
   char c;
   while ((c = getchar()) != '\n' && c != EOF)
   {
   }
+}
+
+void scanAswerString(char *scanned)
+{
+  scanf("%s", scanned);
 }
