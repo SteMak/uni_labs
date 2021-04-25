@@ -45,5 +45,5 @@ void scanAswerMatrix(int a, int *scanned)
 
 void scanAswerString(char *scanned)
 {
-  scanf("%s", scanned);
+  scanf(" %99[^\n]", scanned);
 }

@@ -1,4 +1,6 @@
-#define MainOptions 11
+#include "../structs.h"
+
+#define MainOptions 12
 
 int drowName(int, int);
 int drowOptions(char **, int, int);
@@ -15,6 +17,7 @@ int lab3_3Menu(int, int, float);
 int lab4_1Menu(int, int, int, int *);
 int lab5_1Menu(int, int, int, int *, int *);
 int lab6_1Menu(int, int, int, int, char *, char *);
+int lab7_1Menu(int, int, struct Person *);
 
 int *newMatrix(int);
 
@@ -32,6 +35,7 @@ int mainMenu(int cols, int rows)
   choices[8] = "Lab 4_1 (arrays)\0";
   choices[9] = "Lab 5_1 (matrices)\0";
   choices[10] = "Lab 6_1 (strings)\0";
+  choices[11] = "Lab 7_1 (people list)\0";
 
   drowName(cols, rows);
   drowOptions(choices, MainOptions, cols);
@@ -83,6 +87,13 @@ int mainMenu(int cols, int rows)
     char strA[512] = "Abc";
     char strB[512] = "CeDf";
     lab6_1Menu(cols, rows, 3, 5, strA, strB);
+    break;
+  }
+  case 11:
+  {
+    struct Person people[32];
+    people[0].id = -1;
+    lab7_1Menu(cols, rows, people);
     break;
   }
   default:
