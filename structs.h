@@ -1,7 +1,7 @@
 struct Person
 {
   int id;
-  char name[20];
+  char name[128];
   int age;
   float salary;
 };

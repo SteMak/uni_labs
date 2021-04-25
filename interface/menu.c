@@ -1,3 +1,4 @@
+#include <string.h>
 #include "../structs.h"
 
 #define MainOptions 12
@@ -92,7 +93,13 @@ int mainMenu(int cols, int rows)
   case 11:
   {
     struct Person people[32];
-    people[0].id = -1;
+    for (int i = 0; i < 32; i++)
+    {
+      people[i].id = -1;
+      strcpy(people[i].name, "");
+      people[i].age = -1;
+      people[i].salary = -1;
+    }
     lab7_1Menu(cols, rows, people);
     break;
   }
