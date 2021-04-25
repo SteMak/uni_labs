@@ -1,4 +1,4 @@
-#define MainOptions 10
+#define MainOptions 11
 
 int drowName(int, int);
 int drowOptions(char **, int, int);
@@ -13,9 +13,10 @@ int lab3_1Menu(int, int, int);
 int lab3_2Menu(int, int, int);
 int lab3_3Menu(int, int, float);
 int lab4_1Menu(int, int, int, int *);
-int lab5_1Menu(int, int, int, int *, int *, int);
+int lab5_1Menu(int, int, int, int *, int *);
+int lab6_1Menu(int, int, int, int, char *, char *);
 
-int *newMatrix(int, int);
+int *newMatrix(int);
 
 int mainMenu(int cols, int rows)
 {
@@ -30,6 +31,7 @@ int mainMenu(int cols, int rows)
   choices[7] = "Lab 3_3 (degrees to rads)\0";
   choices[8] = "Lab 4_1 (arrays)\0";
   choices[9] = "Lab 5_1 (matrices)\0";
+  choices[10] = "Lab 6_1 (strings)\0";
 
   drowName(cols, rows);
   drowOptions(choices, MainOptions, cols);
@@ -71,10 +73,16 @@ int mainMenu(int cols, int rows)
   }
   case 9:
   {
-    const int size = sizeof(int);
-    int *matA = newMatrix(32, size);
-    int *matB = newMatrix(32, size);
-    lab5_1Menu(cols, rows, 3, matA, matB, size);
+    int *matA = newMatrix(32);
+    int *matB = newMatrix(32);
+    lab5_1Menu(cols, rows, 3, matA, matB);
+    break;
+  }
+  case 10:
+  {
+    char strA[512] = "Abc";
+    char strB[512] = "CeDf";
+    lab6_1Menu(cols, rows, 3, 5, strA, strB);
     break;
   }
   default:
