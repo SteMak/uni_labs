@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "../structs.h"
 
 #define Lab7_1Options 4
@@ -56,7 +57,7 @@ int lab7_1Menu(int cols, int rows, struct Person *people)
   return 0;
 }
 
-void lab7_1ScanName(int cols, int rows, char *choice)
+void lab7_1ScanName(int cols, int rows, char *choice, int maxLen)
 {
   char *solutions[1] = {"Please, enter new person's name"};
 
@@ -65,6 +66,8 @@ void lab7_1ScanName(int cols, int rows, char *choice)
   drowWaitAnswer(cols, rows, 0);
 
   scanAswerString(choice);
+  for (int i = strlen(choice); strlen(choice) < maxLen; i++)
+    strcat(choice, " ");
 }
 
 int lab7_1ScanAge(int cols, int rows)
@@ -94,7 +97,7 @@ float lab7_1ScanSalary(int cols, int rows)
 int lab7_1ScanPerson(int cols, int rows, struct Person *people)
 {
   char name[64];
-  lab7_1ScanName(cols, rows, name);
+  lab7_1ScanName(cols, rows, name, 64);
   int age = lab7_1ScanAge(cols, rows);
   float salary = lab7_1ScanSalary(cols, rows);
 
@@ -125,7 +128,9 @@ int lab7_1PrintPeople(int cols, int rows, struct Person *people)
   int i = 0;
   while (people[i].id != -1)
   {
-    sprintf(solutionsFormat[i], "Id: %2d | Name: %20s | Age: %2d | Salary: %10.2f", people[i].id, people[i].name, people[i].age, people[i].salary);
+    char sliceName[512] = "";
+    strncpy(sliceName, people[i].name, 20);
+    sprintf(solutionsFormat[i], "Id: %2d | Name: %20s | Age: %2d | Salary: %10.2f", people[i].id, sliceName, people[i].age, people[i].salary);
     i++;
   }
   char *solutions[Lab7_1Max_People];
