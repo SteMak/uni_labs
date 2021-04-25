@@ -1,3 +1,4 @@
+#ifdef _WIN32
 #include <windows.h>
 
 int tWidth()
@@ -15,3 +16,24 @@ int tHeight()
 
   return csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
 }
+#endif
+
+#ifdef linux
+#include <sys/ioctl.h>
+
+int tWidth(void)
+{
+  struct winsize w;
+  ioctl(0, TIOCGWINSZ, &w);
+
+  return w.ws_col;
+}
+
+int tHeight(void)
+{
+  struct winsize w;
+  ioctl(0, TIOCGWINSZ, &w);
+
+  return w.ws_row;
+}
+#endif
