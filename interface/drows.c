@@ -55,7 +55,12 @@ int drowOptions(char **options, int options_num, int cols)
   for (int i = 0; i < options_num; i++)
   {
     char pref[512];
-    sprintf(pref, "<%d> %s", i, options[i]);
+    if (i < 10 && options_num > 9)
+      sprintf(pref, "<%d>  %s", i, options[i]);
+    else if (i < 100 && options_num > 99)
+      sprintf(pref, "<%d>   %s", i, options[i]);
+    else
+      sprintf(pref, "<%d> %s", i, options[i]);
     for (int k = strlen(options[i]); k < l; k++)
       strcat(pref, " ");
     printlnCenter(cols, pref);
