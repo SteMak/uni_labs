@@ -1,5 +1,4 @@
-long long int factorial(int n)
-{
+long long int factorial(int n) {
   if (n < 0)
     return -1;
   if (n == 0)

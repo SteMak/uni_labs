@@ -1,8 +1,8 @@
-#include "../structs.h"
 #include <string.h>
 
-void addPerson(struct Person *people, char *name, int age, float salary)
-{
+#include "../structs.h"
+
+void addPerson(struct Person *people, char *name, int age, float salary) {
   int i = 0;
   while (people[i].id != -1)
     i++;
@@ -14,10 +14,8 @@ void addPerson(struct Person *people, char *name, int age, float salary)
   people[i + 1].id = -1;
 }
 
-void deletePerson(struct Person *people, int id)
-{
-  for (int i = id; people[i].id != -1; i++)
-  {
+void deletePerson(struct Person *people, int id) {
+  for (int i = id; people[i].id != -1; i++) {
     strcpy(people[i].name, people[i + 1].name);
     people[i].age = people[i + 1].age;
     people[i].salary = people[i + 1].salary;

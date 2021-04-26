@@ -1,16 +1,14 @@
 #ifdef _WIN32
 #include <windows.h>
 
-int tWidth()
-{
+int tWidth() {
   CONSOLE_SCREEN_BUFFER_INFO csbi;
   GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
 
   return csbi.srWindow.Right - csbi.srWindow.Left + 1;
 }
 
-int tHeight()
-{
+int tHeight() {
   CONSOLE_SCREEN_BUFFER_INFO csbi;
   GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
 
@@ -21,16 +19,14 @@ int tHeight()
 #ifdef linux
 #include <sys/ioctl.h>
 
-int tWidth(void)
-{
+int tWidth(void) {
   struct winsize w;
   ioctl(0, TIOCGWINSZ, &w);
 
   return w.ws_col;
 }
 
-int tHeight(void)
-{
+int tHeight(void) {
   struct winsize w;
   ioctl(0, TIOCGWINSZ, &w);
 

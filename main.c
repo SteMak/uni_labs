@@ -1,9 +1,8 @@
 int tWidth();
 int tHeight();
-int mainMenu(int, int);
+void mainMenu(int, int);
 
-int main()
-{
+int main() {
   int cols = tWidth();
   int rows = tHeight();
 

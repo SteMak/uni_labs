@@ -1,12 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <stdlib.h>
 
-char *stringifyArray(int *arr, int a, char *arrayStr)
-{
-  for (int i = 0; i < a; i++)
-  {
+char *stringifyArray(int *arr, int a, char *arrayStr) {
+  for (int i = 0; i < a; i++) {
     char strEl[32] = "";
     sprintf(strEl, "%d ", arr[i]);
     strcat(arrayStr, strEl);
@@ -14,16 +12,14 @@ char *stringifyArray(int *arr, int a, char *arrayStr)
   return arrayStr;
 }
 
-int sumArray(int *arr, int a)
-{
+int sumArray(int *arr, int a) {
   int sum = 0;
   for (int i = 0; i < a; i++)
     sum += arr[i];
   return sum;
 }
 
-int maxArray(int *arr, int a)
-{
+int maxArray(int *arr, int a) {
   if (a <= 0)
     return -1;
   int max = arr[0];
@@ -33,17 +29,14 @@ int maxArray(int *arr, int a)
   return max;
 }
 
-void randomizeArray(int *arr, int a)
-{
+void randomizeArray(int *arr, int a) {
   srand(time(NULL));
   for (int i = 0; i < a; i++)
     arr[i] = rand() % 100;
 }
 
-void fibonaccinizeArray(int *arr, int a)
-{
-  if (a >= 2)
-  {
+void fibonaccinizeArray(int *arr, int a) {
+  if (a >= 2) {
     arr[0] = 1;
     arr[1] = 1;
   }
