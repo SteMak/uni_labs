@@ -22,3 +22,9 @@ void deletePerson(struct Person *people, int id) {
     people[i].id = people[i + 1].id == -1 ? -1 : i;
   }
 }
+
+int peopleLength(struct Person *people) {
+  int i = 0;
+  while (people[i].id != -1) i++;
+  return i;
+}

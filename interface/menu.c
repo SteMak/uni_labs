@@ -1,8 +1,9 @@
+#include <stdio.h>
 #include <string.h>
 
 #include "../structs.h"
 
-#define MainOptions 12
+#define MainOptions 13
 
 void drowName(int, int);
 void drowOptions(char **, int, int);
@@ -20,26 +21,28 @@ void lab4_1Menu(int, int, int, int *);
 void lab5_1Menu(int, int, int, int *, int *);
 void lab6_1Menu(int, int, int, int, char *, char *);
 void lab7_1Menu(int, int, struct Person *);
+void lab8_1Menu(int, int);
 
 int *newMatrix(int);
 void deleteMatrix(int *);
 
 void mainMenu(int cols, int rows) {
-  while (1) {
-    char *choices[MainOptions];
-    choices[0] = "Exit\0";
-    choices[1] = "Lab 1_1 (+ - * / %)\0";
-    choices[2] = "Lab 1_2 (test some functions)\0";
-    choices[3] = "Lab 2_1 (belonging to segment)\0";
-    choices[4] = "Lab 2_2 (biggest of 3)\0";
-    choices[5] = "Lab 3_1 (count even numbers)\0";
-    choices[6] = "Lab 3_2 (factorial)\0";
-    choices[7] = "Lab 3_3 (degrees to rads)\0";
-    choices[8] = "Lab 4_1 (arrays)\0";
-    choices[9] = "Lab 5_1 (matrices)\0";
-    choices[10] = "Lab 6_1 (strings)\0";
-    choices[11] = "Lab 7_1 (people list)\0";
+  char *choices[MainOptions];
+  choices[0] = "Exit\0";
+  choices[1] = "Lab 1_1 (+ - * / %)\0";
+  choices[2] = "Lab 1_2 (test some functions)\0";
+  choices[3] = "Lab 2_1 (belonging to segment)\0";
+  choices[4] = "Lab 2_2 (biggest of 3)\0";
+  choices[5] = "Lab 3_1 (count even numbers)\0";
+  choices[6] = "Lab 3_2 (factorial)\0";
+  choices[7] = "Lab 3_3 (degrees to rads)\0";
+  choices[8] = "Lab 4_1 (arrays)\0";
+  choices[9] = "Lab 5_1 (matrices)\0";
+  choices[10] = "Lab 6_1 (strings)\0";
+  choices[11] = "Lab 7_1 (people list)\0";
+  choices[12] = "Lab 8_1 (people list in file)\0";
 
+  while (1) {
     drowName(cols, rows);
     drowOptions(choices, MainOptions, cols);
     drowWaitAnswer(cols, rows, MainOptions);
@@ -98,6 +101,9 @@ void mainMenu(int cols, int rows) {
         lab7_1Menu(cols, rows, people);
         break;
       }
+      case 12:
+        lab8_1Menu(cols, rows);
+        break;
     }
   }
 }

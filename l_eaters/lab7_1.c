@@ -33,9 +33,7 @@ void lab7_1Menu(int cols, int rows, struct Person *people) {
     drowOptions(choices, Lab7_1Options, cols);
     drowWaitAnswer(cols, rows, Lab7_1Options);
 
-    int choice = scanAswer();
-
-    switch (choice) {
+    switch (scanAswer()) {
       case 0:
         return;
       case 1:
