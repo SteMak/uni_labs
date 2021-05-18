@@ -23,12 +23,12 @@ void *scanAswerArray(int a, int *scanned) {
   }
 }
 
-void scanAswerMatrix(int a, int *scanned) {
+void scanAswerMatrix(int a, int b, int *scanned) {
   int scan;
   for (int i = 0; i < a; i++)
-    for (int j = 0; j < a; j++) {
+    for (int j = 0; j < b; j++) {
       scanf("%d", &scan);
-      setEl(scanned, a, i, j, scan);
+      setEl(scanned, b, i, j, scan);
     }
   char c;
   while ((c = getchar()) != '\n' && c != EOF) {

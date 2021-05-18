@@ -3,7 +3,7 @@
 
 #include "../structs.h"
 
-#define MainOptions 13
+#define MainOptions 14
 
 void drowName(int, int);
 void drowOptions(char **, int, int);
@@ -22,9 +22,11 @@ void lab5_1Menu(int, int, int, int *, int *);
 void lab6_1Menu(int, int, int, int, char *, char *);
 void lab7_1Menu(int, int, struct Person *);
 void lab8_1Menu(int, int);
+void lab9_1Menu(int, int, int, int, int *, int *);
 
-int *newMatrix(int);
+int *newMatrix(int, int);
 void deleteMatrix(int *);
+void randomizeMatrix(int *, int, int);
 
 void mainMenu(int cols, int rows) {
   char *choices[MainOptions];
@@ -41,6 +43,7 @@ void mainMenu(int cols, int rows) {
   choices[10] = "Lab 6_1 (strings)\0";
   choices[11] = "Lab 7_1 (people list)\0";
   choices[12] = "Lab 8_1 (people list in file)\0";
+  choices[13] = "Lab 9_1 (dynamic memory allocation)\0";
 
   while (1) {
     drowName(cols, rows);
@@ -77,8 +80,8 @@ void mainMenu(int cols, int rows) {
         break;
       }
       case 9: {
-        int *matA = newMatrix(32);
-        int *matB = newMatrix(32);
+        int *matA = newMatrix(32, 32);
+        int *matB = newMatrix(32, 32);
         lab5_1Menu(cols, rows, 3, matA, matB);
         deleteMatrix(matA);
         deleteMatrix(matB);
@@ -104,6 +107,13 @@ void mainMenu(int cols, int rows) {
       case 12:
         lab8_1Menu(cols, rows);
         break;
+      case 13: {
+        int *arr = newMatrix(1, 3);
+        int *mat = newMatrix(3, 2);
+        randomizeMatrix(mat, 3, 2);
+        lab9_1Menu(cols, rows, 3, 2, mat, arr);
+        break;
+      }
     }
   }
 }

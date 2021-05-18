@@ -25,7 +25,7 @@ void deletePerson(struct Person *, int);
 int peopleLength(struct Person *);
 
 void lab8_1Menu(int cols, int rows) {
-  const char *file_path = "records.dat";
+  char *file_path = "records.dat";
 
   struct Person people[32];
   for (int i = 0; i < 32; i++) {

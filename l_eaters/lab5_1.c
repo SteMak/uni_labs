@@ -11,20 +11,20 @@ void drowSolutions(char **, int, int);
 void drowWaitAnswer(int, int, int);
 
 int scanAswer();
-int *scanAswerMatrix(int, int *);
+int *scanAswerMatrix(int, int, int *);
 
-int *matrixSum(int *, int *, int);
-int *matrixMultiplication(int *, int *, int);
-void stringifyMatrix(int *, int, char *);
-void randomizeMatrix(int *, int);
+int *matrixSum(int *, int *, int, int);
+int *matrixMultiplication(int *, int *, int, int, int);
+void stringifyMatrix(int *, int, int, char *);
+void randomizeMatrix(int *, int, int);
 void deleteMatrix(int *);
 
-void lab5_1Menu(int, int, int, int *, int *, int);
+void lab5_1Menu(int, int, int, int *, int *);
 int lab5_1ScanA(int, int);
-void lab5_1ScanMatA(int, int, int, int *, int);
-void lab5_1ScanMatB(int, int, int, int *, int);
+void lab5_1ScanMatA(int, int, int, int, int *);
+void lab5_1ScanMatB(int, int, int, int, int *);
 
-void lab5_1Menu(int cols, int rows, int a, int *matA, int *matB, int size) {
+void lab5_1Menu(int cols, int rows, int a, int *matA, int *matB) {
   while (1) {
     char choicesFormat[Lab5_1Options][512] = {"Go back", "", "Enter A elements", "Enter B elements", "Randomize A", "Randomize B"};
     sprintf(choicesFormat[1], "Set matrix border length  (%d)\0", a);
@@ -35,8 +35,8 @@ void lab5_1Menu(int cols, int rows, int a, int *matA, int *matB, int size) {
 
     char matAStr[512] = "";
     char matBStr[512] = "";
-    stringifyMatrix(matA, a, matAStr);
-    stringifyMatrix(matB, a, matBStr);
+    stringifyMatrix(matA, a, a, matAStr);
+    stringifyMatrix(matB, a, a, matBStr);
     char imagesFormat[Lab5_1Solutions][512];
     sprintf(imagesFormat[0], "A is [ %s]", matAStr);
     sprintf(imagesFormat[1], "B is [ %s]", matBStr);
@@ -45,12 +45,12 @@ void lab5_1Menu(int cols, int rows, int a, int *matA, int *matB, int size) {
     for (int i = 0; i < Lab5_1Images; i++)
       images[i] = imagesFormat[i];
 
-    int *matSum = matrixSum(matA, matB, a);
-    int *matMult = matrixMultiplication(matA, matB, a);
+    int *matSum = matrixSum(matA, matB, a, a);
+    int *matMult = matrixMultiplication(matA, matB, a, a, a);
     char matSumStr[512] = "";
     char matMultStr[512] = "";
-    stringifyMatrix(matSum, a, matSumStr);
-    stringifyMatrix(matMult, a, matMultStr);
+    stringifyMatrix(matSum, a, a, matSumStr);
+    stringifyMatrix(matMult, a, a, matMultStr);
     char solutionsFormat[Lab5_1Solutions][512];
     sprintf(solutionsFormat[0], "Sum of matrices is [ %s]", matSumStr);
     sprintf(solutionsFormat[1], "Multiplication of matrices is [ %s]", matMultStr);
@@ -75,17 +75,17 @@ void lab5_1Menu(int cols, int rows, int a, int *matA, int *matB, int size) {
         a = lab5_1ScanA(cols, rows);
         break;
       case 2:
-        lab5_1ScanMatA(cols, rows, a, matA, size);
+        lab5_1ScanMatA(cols, rows, a, a, matA);
         break;
       case 3:
-        lab5_1ScanMatB(cols, rows, a, matB, size);
+        lab5_1ScanMatB(cols, rows, a, a, matB);
         break;
       case 4: {
-        randomizeMatrix(matA, a);
+        randomizeMatrix(matA, a, a);
         break;
       }
       case 5: {
-        randomizeMatrix(matB, a);
+        randomizeMatrix(matB, a, a);
         break;
       }
     }
@@ -102,9 +102,9 @@ int lab5_1ScanA(int cols, int rows) {
   return scanAswer();
 }
 
-void lab5_1ScanMatA(int cols, int rows, int a, int *matA, int size) {
+void lab5_1ScanMatA(int cols, int rows, int a, int b, int *matA) {
   char request[512];
-  sprintf(request, "Please, enter new matrix A of length %dx%d", a, a);
+  sprintf(request, "Please, enter new matrix A of length %dx%d", a, b);
   char *solutions[1] = {};
   solutions[0] = request;
 
@@ -112,12 +112,12 @@ void lab5_1ScanMatA(int cols, int rows, int a, int *matA, int size) {
   drowSolutions(solutions, 1, cols);
   drowWaitAnswer(cols, rows, 0);
 
-  scanAswerMatrix(a, matA);
+  scanAswerMatrix(a, b, matA);
 }
 
-void lab5_1ScanMatB(int cols, int rows, int a, int *matB, int size) {
+void lab5_1ScanMatB(int cols, int rows, int a, int b, int *matB) {
   char request[512];
-  sprintf(request, "Please, enter new matrix B of length %dx%d", a, a);
+  sprintf(request, "Please, enter new matrix B of length %dx%d", a, b);
   char *solutions[1] = {};
   solutions[0] = request;
 
@@ -125,5 +125,5 @@ void lab5_1ScanMatB(int cols, int rows, int a, int *matB, int size) {
   drowSolutions(solutions, 1, cols);
   drowWaitAnswer(cols, rows, 0);
 
-  scanAswerMatrix(a, matB);
+  scanAswerMatrix(a, b, matB);
 }
